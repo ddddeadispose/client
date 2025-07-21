@@ -32,6 +32,7 @@ public slots:
     void importConfig();
     bool extractConfigFromFile(const QString &fileName);
     bool extractConfigFromData(QString data);
+    bool importVlessSubscription(const QString &subscriptionUrl);
     bool extractConfigFromQr(const QByteArray &data);
     QString getConfig();
     QString getConfigFileName();

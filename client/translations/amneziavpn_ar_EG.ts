@@ -2909,6 +2909,16 @@ Already installed containers were found on the server. All installed containers 
         <source>I have nothing</source>
         <translation>ليس لدي اي شئ</translation>
     </message>
+    <message>
+        <location filename="../ui/qml/Pages2/PageSetupWizardConfigSource.qml" line="187"/>
+        <source>Subscription URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/Pages2/PageSetupWizardConfigSource.qml" line="201"/>
+        <source>Load subscription</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PageSetupWizardCredentials</name>

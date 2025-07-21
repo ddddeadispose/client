@@ -185,6 +185,42 @@ PageType {
                 }
             }
 
+            TextFieldWithHeaderType {
+                id: subscriptionUrl
+
+                Layout.fillWidth: true
+                Layout.topMargin: 16
+                Layout.rightMargin: 16
+                Layout.leftMargin: 16
+
+                headerText: qsTr("Subscription URL")
+                buttonText: qsTr("Insert")
+
+                clickedFunc: function() {
+                    textField.text = ""
+                    textField.paste()
+                }
+            }
+
+            BasicButtonType {
+                id: loadSubscriptionButton
+
+                Layout.fillWidth: true
+                Layout.topMargin: 16
+                Layout.rightMargin: 16
+                Layout.leftMargin: 16
+
+                visible: subscriptionUrl.textField.text !== ""
+
+                text: qsTr("Load subscription")
+
+                clickedFunc: function() {
+                    if (ImportController.importVlessSubscription(subscriptionUrl.textField.text)) {
+                        PageController.goToPageHome()
+                    }
+                }
+            }
+
             BasicButtonType {
                 id: continueButton
 

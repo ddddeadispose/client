@@ -3187,6 +3187,16 @@ It&apos;s okay as long as it&apos;s from someone you trust.</source>
         <translation>У мене нічого нема</translation>
     </message>
     <message>
+        <location filename="../ui/qml/Pages2/PageSetupWizardConfigSource.qml" line="187"/>
+        <source>Subscription URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/Pages2/PageSetupWizardConfigSource.qml" line="201"/>
+        <source>Load subscription</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Key as text</source>
         <translation type="vanished">Ключ у вигляді тексту</translation>
     </message>

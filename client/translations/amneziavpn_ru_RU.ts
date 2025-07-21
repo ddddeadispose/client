@@ -3262,6 +3262,16 @@ Thank you for staying with us!</source>
         <source>I have nothing</source>
         <translation>У меня ничего нет</translation>
     </message>
+    <message>
+        <location filename="../ui/qml/Pages2/PageSetupWizardConfigSource.qml" line="187"/>
+        <source>Subscription URL</source>
+        <translation>URL подписки</translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/Pages2/PageSetupWizardConfigSource.qml" line="201"/>
+        <source>Load subscription</source>
+        <translation>Загрузить подписку</translation>
+    </message>
 </context>
 <context>
     <name>PageSetupWizardCredentials</name>

@@ -3029,6 +3029,16 @@ It&apos;s okay as long as it&apos;s from someone you trust.</source>
         <translation>من هیچی ندارم</translation>
     </message>
     <message>
+        <location filename="../ui/qml/Pages2/PageSetupWizardConfigSource.qml" line="187"/>
+        <source>Subscription URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/Pages2/PageSetupWizardConfigSource.qml" line="201"/>
+        <source>Load subscription</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Key as text</source>
         <translation type="vanished">متن شامل کلید</translation>
     </message>
