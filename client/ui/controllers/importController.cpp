@@ -6,6 +6,10 @@
 #include <QRandomGenerator>
 #include <QStandardPaths>
 #include <QUrlQuery>
+#include <QEventLoop>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include "amnezia_application.h"
 
 #include "core/api/apiDefs.h"
 #include "core/api/apiUtils.h"
@@ -98,6 +102,11 @@ bool ImportController::extractConfigFromData(QString data)
     m_maliciousWarningText.clear();
 
     QString config = data;
+    if (config.startsWith("http://") || config.startsWith("https://")) {
+        if (importVlessSubscription(config)) {
+            return false;
+        }
+    }
     QString prefix;
     QString errormsg;
 
@@ -339,6 +348,55 @@ void ImportController::importConfig()
     m_config = {};
     m_configFileName.clear();
     m_maliciousWarningText.clear();
+}
+
+bool ImportController::importVlessSubscription(const QString &subscriptionUrl)
+{
+    QUrl url(subscriptionUrl);
+    if (!url.isValid()) {
+        return false;
+    }
+
+    QNetworkReply *reply = amnApp->networkManager()->get(QNetworkRequest(url));
+    QEventLoop loop;
+    QObject::connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
+    loop.exec();
+
+    QByteArray data = reply->error() == QNetworkReply::NoError ? reply->readAll() : QByteArray();
+    reply->deleteLater();
+    if (data.isEmpty()) {
+        return false;
+    }
+
+    QByteArray decoded = QByteArray::fromBase64(data.trimmed());
+    if (decoded.isEmpty()) {
+        decoded = data;
+    }
+
+    QList<QByteArray> links = decoded.split('\n');
+    bool added = false;
+    for (const QByteArray &ba : links) {
+        QString link = QString::fromUtf8(ba).trimmed();
+        if (!link.startsWith("vless://")) {
+            continue;
+        }
+        QString prefix;
+        QString err;
+        QJsonObject obj = serialization::vless::Deserialize(link, &prefix, &err);
+        if (obj.isEmpty()) {
+            continue;
+        }
+        m_configType = ConfigTypes::Xray;
+        QJsonObject server = extractXrayConfig(Utils::JsonToString(obj, QJsonDocument::JsonFormat::Compact), prefix);
+        if (!server.isEmpty()) {
+            m_serversModel->addServer(server);
+            added = true;
+        }
+    }
+    if (added) {
+        emit importFinished();
+    }
+    return added;
 }
 
 QJsonObject ImportController::extractOpenVpnConfig(const QString &data)

@@ -2918,6 +2918,16 @@ Already installed containers were found on the server. All installed containers 
         <translation type="unfinished">میرے پاس کچھ نہیں ہے</translation>
     </message>
     <message>
+        <location filename="../ui/qml/Pages2/PageSetupWizardConfigSource.qml" line="187"/>
+        <source>Subscription URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/qml/Pages2/PageSetupWizardConfigSource.qml" line="201"/>
+        <source>Load subscription</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Key as text</source>
         <translation type="vanished">متن کے طور پر کلید</translation>
     </message>
